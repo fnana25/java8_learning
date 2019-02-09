@@ -1,5 +1,7 @@
 package com.test.function;
 
+import java.util.stream.Collectors;
+
 /**
  * Test
  *
@@ -7,4 +9,5 @@ package com.test.function;
  * @date 19/1/8 21:21
  */
 public class Test {
+
 }
