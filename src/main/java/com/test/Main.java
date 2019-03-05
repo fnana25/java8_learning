@@ -11,7 +11,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
- * Demo class
+ * 集合迭代时删除元素的正确方法
  *
  * @author fengna
  * @date 2019/1/4
