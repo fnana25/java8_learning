@@ -11,7 +11,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
- * 集合迭代时删除元素的正确方法
+ * 集合迭代时删除元素的正确方法 使用iterator
  *
  * @author fengna
  * @date 2019/1/4
@@ -27,13 +27,7 @@ public class Main {
         List<String> list2 = new ArrayList<>();
         list2.add("1");
         list2.add("2");
-//        Iterator<String> iterator = list2.iterator();
-////        while (iterator.hasNext()) {
-////            String item = iterator.next();
-////            if ("1".equals(item)) {
-////                iterator.remove();
-//            }
-//        }
+
         for (String item : list2) {
             if ("1".equals(item)) {
                 list.remove(item);
