@@ -2,16 +2,13 @@ package com.test;
 
 import java.text.DateFormat;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
- * 集合迭代时删除元素的正确方法 使用iterator
+ * 集合迭代时删除元素的正确方法 iterator 或removeIf()
  *
  * @author fengna
  * @date 2019/1/4
@@ -27,12 +24,19 @@ public class Main {
         List<String> list2 = new ArrayList<>();
         list2.add("1");
         list2.add("2");
-
-        for (String item : list2) {
-            if ("1".equals(item)) {
-                list.remove(item);
-            }
-        }
+//        Iterator<String> iterator = list2.iterator();
+//        while (iterator.hasNext()) {
+//            String item = iterator.next();
+//            if ("1".equals(item)) {
+//                iterator.remove();
+//            }
+//        }
+        list2.removeIf((o)->"1".equals(o));
+//        for (String item : list2) {
+//            if ("1".equals(item)) {
+//                list.remove(item);
+//            }
+//        }
         System.out.println(list2.size());
     }
 }
