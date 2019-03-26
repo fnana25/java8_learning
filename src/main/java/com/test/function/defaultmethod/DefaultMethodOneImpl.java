@@ -6,10 +6,10 @@ package com.test.function.defaultmethod;
  * @author fengna
  * @date 2019/3/26
  */
-public class DefaultMethodOneImpl implements DefaultMethodOne{
+public class DefaultMethodOneImpl implements DefaultMethodOne {
 
     @Override
-    public int defaultMethod(int a,int b){
-        return a + b +10;
+    public int defaultMethod(int a, int b) {
+        return a + b + 10;
     }
 }
