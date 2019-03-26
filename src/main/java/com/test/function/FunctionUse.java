@@ -9,11 +9,11 @@ import java.util.function.Function;
  * @author fengna
  * @date 2019/3/26
  */
-public class FunctionDefaultUse {
+public class FunctionUse {
 
     public static void main(String[] args) {
 
-        FunctionDefaultUse test = new FunctionDefaultUse();
+        FunctionUse test = new FunctionUse();
         System.out.println("Function compose : " + test.computeCompose(10, a -> a * 2, a -> a + 3));
         System.out.println("Function andThen : " + test.computeAndThen(10, a -> a * 2, a -> a + 3));
         System.out.println("BiFunction : " + test.computeBiFunction(10, 5, (a, b) -> a * b));
