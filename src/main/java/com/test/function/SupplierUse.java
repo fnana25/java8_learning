@@ -11,13 +11,11 @@ import java.util.function.Supplier;
  * @date 2019/3/26
  */
 public class SupplierUse {
-    public static void main(String[] args) {
-        Supplier<Student> studentSupplier = () -> new Student();
 
-        System.out.println(studentSupplier.get().getName());
+    public static void main(String[] args) {
 
         Supplier<Student> supplier = Student::new;
-
         System.out.println(supplier.get().getAge());
+
     }
 }

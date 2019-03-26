@@ -1,11 +1,8 @@
 package com.test;
 
-import java.text.DateFormat;
-import java.time.Instant;
-import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.atomic.LongAdder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 集合迭代时删除元素的正确方法 iterator 或removeIf()

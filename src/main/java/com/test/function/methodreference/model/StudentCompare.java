@@ -8,11 +8,11 @@ package com.test.function.methodreference.model;
  */
 public class StudentCompare {
 
-    public int compareByName(Student a,Student b){
+    public int compareByName(Student a, Student b) {
         return a.getName().compareToIgnoreCase(b.getName());
     }
 
-    public int compareByScore(Student a,Student b){
+    public int compareByScore(Student a, Student b) {
         return a.getScore() - b.getScore();
     }
 }

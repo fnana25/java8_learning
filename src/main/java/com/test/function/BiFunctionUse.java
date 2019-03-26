@@ -26,35 +26,35 @@ public class BiFunctionUse {
 
         BiFunctionUse test = new BiFunctionUse();
 
-        List<Person> resultByAge = test.filterByAge(12,list);
+        List<Person> resultByAge = test.filterByAge(12, list);
         System.out.println("filterByAge : ======================");
         resultByAge.forEach(System.out::println);
 
-        List<Person> resultByUserName = test.filterByUserName("na2",list);
+        List<Person> resultByUserName = test.filterByUserName("na2", list);
         System.out.println("filterByUserName : ==================");
         resultByUserName.forEach(System.out::println);
 
-        List<Person> resultByBiFunction = test.filterByAgeByBiFunction(13,list,(age,array) ->
-            array.stream().filter(o -> o.getAge() > age).collect(Collectors.toList())
+        List<Person> resultByBiFunction = test.filterByAgeByBiFunction(13, list, (age, array) ->
+                array.stream().filter(o -> o.getAge() > age).collect(Collectors.toList())
         );
 
         System.out.println("filterByAgeByBiFunction : ================");
         resultByBiFunction.forEach(System.out::println);
     }
 
-    private List<Person> filterByUserName(String userName,List<Person> list){
+    private List<Person> filterByUserName(String userName, List<Person> list) {
         return list.stream()
                 .filter(o -> userName.equals(o.getUserName()))
                 .collect(Collectors.toList());
     }
 
-    private List<Person> filterByAge(int age,List<Person> list){
+    private List<Person> filterByAge(int age, List<Person> list) {
         return list.stream()
                 .filter(o -> o.getAge() > age)
                 .collect(Collectors.toList());
     }
 
-    private List<Person> filterByAgeByBiFunction(int age, List<Person> list, BiFunction<Integer,List<Person>,List<Person>> biFunction){
-        return biFunction.apply(age,list);
+    private List<Person> filterByAgeByBiFunction(int age, List<Person> list, BiFunction<Integer, List<Person>, List<Person>> biFunction) {
+        return biFunction.apply(age, list);
     }
 }

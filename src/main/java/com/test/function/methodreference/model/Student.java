@@ -2,7 +2,6 @@ package com.test.function.methodreference.model;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * Student
