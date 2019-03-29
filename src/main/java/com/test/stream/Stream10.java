@@ -21,6 +21,5 @@ public class Stream10 {
             return length;
         }).filter(i -> i == 3).findFirst().ifPresent(System.out::println);
 
-
     }
 }
