@@ -6,7 +6,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Demo class
+ * parallelStream
  *
  * @author fengna
  * @date 2019/3/28
@@ -25,7 +25,7 @@ public class Stream9 {
 
         long startTime = System.nanoTime();
 
-        list.parallelStream().sorted();
+        list.parallelStream().sorted().forEach(System.out::println);
 
         long endTime = System.nanoTime();
 
