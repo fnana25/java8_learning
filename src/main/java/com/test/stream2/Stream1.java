@@ -33,8 +33,8 @@ public class Stream1 {
         System.out.println("count : " + students.stream().count());
         System.out.println("---------------------");
 
-        students.stream().collect(minBy(Comparator1.comparingInt(Student::getScore))).ifPresent(System.out::println);
-        students.stream().collect(maxBy(Comparator1.comparingInt(Student::getScore))).ifPresent(System.out::println);
+        students.stream().collect(minBy(Comparator.comparingInt(Student::getScore))).ifPresent(System.out::println);
+        students.stream().collect(maxBy(Comparator.comparingInt(Student::getScore))).ifPresent(System.out::println);
         System.out.println(students.stream().collect(averagingInt(Student::getScore)));
         System.out.println(students.stream().collect(summarizingInt(Student::getScore)));
         IntSummaryStatistics intSummaryStatistics = students.stream().collect(summarizingInt(Student::getScore));
@@ -52,7 +52,7 @@ public class Stream1 {
         Map<Boolean,Map<Boolean,List<Student>>> map2 = students.stream().collect(partitioningBy(s -> s.getScore() > 90,partitioningBy(s -> s.getScore() > 98)));
         Map<Boolean,Long> map3 = students.stream().collect(partitioningBy(s -> s.getScore() > 90,counting()));
 
-        Map<String,Student> map4 = students.stream().collect(groupingBy(Student::getName,collectingAndThen(minBy(Comparator1.comparingInt(Student::getScore)),Optional::get)));
+        Map<String,Student> map4 = students.stream().collect(groupingBy(Student::getName,collectingAndThen(minBy(Comparator.comparingInt(Student::getScore)),Optional::get)));
 
         System.out.println("map1 : " + map1);
         System.out.println("map2 : " + map2);
