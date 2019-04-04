@@ -1,4 +1,4 @@
-package com.test.joda;
+package com.test.datetime;
 
 import org.joda.primitives.list.IntList;
 import org.joda.primitives.list.impl.ArrayIntList;
