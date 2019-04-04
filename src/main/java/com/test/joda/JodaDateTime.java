@@ -3,8 +3,6 @@ package com.test.joda;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-import javax.sound.midi.Soundbank;
-
 /**
  * Joda2
  *
