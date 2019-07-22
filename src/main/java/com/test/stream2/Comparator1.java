@@ -17,6 +17,9 @@ public class Comparator1 {
 
         List<String> list = Arrays.asList("na1","na22","nA333","na4444","Na55");
 
+        list.sort(Comparator.comparingInt(String::length).reversed());
+        System.out.println(list);
+
         Collections.sort(list,(item1,item2) -> item1.length() - item2.length());
         Collections.sort(list,(item1,item2) -> item2.length() - item1.length());
 

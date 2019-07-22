@@ -8,4 +8,7 @@ package com.test.annotation;
  */
 public class Test {
 
+    public static void main(String[] args) {
+        String s= "";
+    }
 }

@@ -13,6 +13,7 @@ public class Stream11 {
 
     public static void main(String[] args) {
         List<String> list = Arrays.asList("a b","a c","b c");
-        list.stream().map(item -> item.split(" ")).flatMap(Arrays::stream).distinct().forEach(System.out::println);
+        list.stream().map(item -> item.split(" "))
+                .flatMap(Arrays::stream).distinct().forEach(System.out::println);
     }
 }

@@ -28,7 +28,5 @@ public class Stream6 {
         System.out.println(summaryStatistics.getMin());
         System.out.println(summaryStatistics.getSum());
 
-
-
     }
 }

@@ -30,6 +30,6 @@ public class Stream4 {
         List<String> list5 = stream.collect(Collectors.toCollection(ArrayList::new));
 
         list5.forEach(System.out::println);
-        System.out.println(stream.collect(Collectors.joining()));
+        System.out.println(stream.collect(Collectors.joining(" ")));
     }
 }

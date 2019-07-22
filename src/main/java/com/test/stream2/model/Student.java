@@ -11,9 +11,14 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class Student {
+public class Student implements Comparable<Student>{
 
     private String  name;
-
     private int score;
+    private Boolean flag;
+
+    @Override
+    public int compareTo(Student o) {
+            return this.score - o.getScore();
+    }
 }
