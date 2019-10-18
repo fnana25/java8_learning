@@ -8,15 +8,6 @@ package com.test.jvm.classloader;
  * @author fengna
  * @date 2019/4/15
  */
-
-/**
- * 反编译
- * 助记符：
- * ldc 表示将int,float或是String类型的常量值从常量池推送至栈顶
- * bipush 表示将单字节（-128,127）的常量值推送至栈顶
- * sipush 表示将短整型（-32768,32767）的常量值推送至栈顶
- * iconst_m1 表示将int类型-1推送至栈顶（iconst_m1至iconst_5)
- */
 public class Loader2 {
 
     public static void main(String[] args) {

@@ -1,12 +1,8 @@
 package com.test.jvm.classloader;
 
 /**
- * Child.str1 没有导致对子类的主动使用
+ * Child.str1 没有导致对子类的主动使用,访问父类静态成员变量导致对父类主动使用
  * Child.str2 加载子类时首先加载父类
- * -XX:+TraceClassLoading 用于追踪类的加载信息并打印出来
- * -XX:+<option> 表示开启option选项
- * -XX:-<option> 表示关闭option选项
- * -XX:<option>=<value> 表示option选项的值设置为value
  * @author fengna
  * @date 2019/4/15
  */
@@ -22,7 +18,7 @@ class Parent{
     public static String str1 = "parent";
 
     static {
-        System.out.println("parent ....");
+        System.out.println("parent .3...");
     }
 
 }
