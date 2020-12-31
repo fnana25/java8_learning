@@ -1,0 +1,109 @@
+
+
+BeanFactory与ApplicationContext
+BeanFactory：
+    1)是spring里面最底层的接口，提供了最简单的容器的功能，只提供了实例化对象和拿对象的功能；
+    2)容器启动的时候不会去实例化bean，只有从容器中拿bean的时候才回去实例化；
+    3)应用启动的时候占用资源较少，对资源要求高的应用比较有优势。
+ApplicationContext：
+    1)应用上下文，继承BeanFactory接口，它是spring的另一个高级的容器，提供了更多的有用的功能；
+    2)启动的时候实例化所有的bean(也可以通过配置，延迟实例化)；
+ ==启动时实例化的优点：
+    1)系统的运行速度快
+    2)在系统启动的时候就能发现配置的问题
+建议：web应用在系统启动的时候加载bean，把费时的事情放到启动，提高运行速度
+
+ApplicationContext的三个实现类：
+    ClassPathXmlApplication:从类路径载入xml文件载入上下文定义信息
+    FileSystemXmlApplication:从文件系统中xml文件载入上下文定义信息
+    XmlWebApplicationContext:从web系统中的xml文件载入上下文定义信息
+
+AOP实现源码解析：
+    通过@EnableAspectJAutoProxy注解为容器导入了一个AspectJAutoProxyRegister类，这个类继承了BeanPostProcessors,
+    当目标类初始化完成后会调用AspectJAutoProxyRegister类的后置处理方法对目标类进行包装，生成代理时会到容器中取切面信息，
+    切面信息是在第一个单例bean实例化之前解析然后存入缓存中的，事务切面没有存到缓存，aop切面存到了缓存，因为事务切面比较少，这样做是为性能考虑。
+文档参考：https://blog.csdn.net/bandeo/category_9705459.html
+         https://blog.csdn.net/java_lyvee/category_7351027.html
+         https://www.bilibili.com/video/BV1Xt411g7eZ?p=1
+
+spring事务：
+    三大接口：PlatformTransactionManager  事务管理器；TransactionDefinition  事务定义信息；TransactionStatus  事务运行状态
+    spring并不直接管理事务，而是让相关平台自己实现，运用了模板方法模式，PlatformTransactionManager提供了获取事务、提交事务和回滚事务3个方法
+    @EnableTransactionManagement声明在主配置类上，表示开启声明式事务，其原理是通过@Import导入TransactionManagementConfigurationSelector组件，
+    然后又通过TransactionManagementConfigurationSelector导入组件AutoProxyRegistrar和ProxyTransactionManagementConfiguration。
+    AutoProxyRegistrar的作用跟aop中的AnnotationAwareAspectJAutoProxyCreator是一样的，利用后置处理器机制，在对象创建后，包装对象，
+    返回一个代理对象（增强器），代理对象执行方法利用拦截器链进行调用；InfrastructureAdvisorAutoProxyCreator继承SmartInstantiationAwareBeanPostProcessor，
+    通过@Transactional作为方法拦截的标记，把有事务管理的类作为目标类，生成代理对象，然后增强@Transactional标记的方法
+spring事务实现方式：
+    1)编程式事务，通过java.sql.Connection
+    2)基于TransactionProxyFactoryBean的生命式事务管理
+    3)@Transactional
+    4)基于aspectj的aop事务
+
+SpringMvc的工作流程描述：
+    1)客户端（浏览器）发送请求，直接请求到 DispatcherServlet。
+    2)DispatcherServlet 根据请求信息调用 HandlerMapping，解析请求对应的 Handler。
+    3)解析到对应的 Handler（也就是我们平常说的 Controller 控制器）后，开始由 HandlerAdapter 适配器处理。
+    4)HandlerAdapter 会根据 Handler 来调用真正的处理器来处理请求，并处理相应的业务逻辑。
+    5)处理器处理完业务后，会返回一个 ModelAndView 对象，Model 是返回的数据对象，View 是个逻辑上的 View。
+    6)ViewResolver 会根据逻辑 View 查找实际的 View。
+    7)DispaterServlet 把返回的 Model 传给 View（视图渲染）。
+    8)把 View 返回给请求者（浏览器）
+
+spring部分源码分析：容器启动，bean生命周期，循环依赖，aop，事务
+    循环依赖：spring三级缓存解决循环依赖
+    singletonObjects:第一级缓存，里面放的是初始化好的单例对象
+    earlySingletonObjects:第二级缓存，里面放的是实例化完成但是还没初始化，提前曝光的单例对象
+    singletonFactories:第三级缓存，里面存放的是要被实例化的对象的对象工厂
+注：构造方法注入不能解决循环依赖的问题，因为实例化需要调用构造方法来完成。
+    所以当一个Bean调用构造函数进行实例化后，即使属性还未填充，
+    就可以通过三级缓存向外暴露依赖的引用值（所以循环依赖问题的解决也是基于Java的引用传递），这也说明了另外一点，基于构造函数的注入，如果有循环依赖，
+    spring是不能解决的。还要说明一点，spring默认的bean scope是单例的，而三级缓存中都包含singleton，可见是对于单例bean之间的循环依赖，
+    spring是通过三级缓存来解决的。
+
+
+
+    手动模式
+        xml资源配置   <constructor-arg/>
+        Java注解配置    @Bean
+        api配置元信息    BeanDefinition
+    自动模式
+        constructor
+字段注入（只有手动模式，没有自动模式）：
+        @Autowired
+        @Resource
+        @Inject
+注： @Autowired和@Resource都是byType的，且是单例的，@Autowired不支持静态字段注入
+方法注入（只有手动模式，没有自动模式）：
+         @Autowired
+         @Resource
+         @Inject
+         @Bean
+接口回调注入：
+         Aware系列接口
+
+九、spring bean的生命周期
+BeanFactory的默认实现为DefaultListableBeanFactory,其中bean的生命周期和方法如下：
+    1)BeanDefinition 注册阶段  --registerBeanDefinition
+    2)BeanDefinition 合并阶段  --getMergedBeanDefinition
+    3)Bean实例化前阶段    --resolveBeforeInstantiation
+    4)Bean实例化阶段    --createBeanInstance
+    5)Bean实例化后阶段    --populateBean
+    6)Aware 接口回调阶段    --initializeBean
+    7)Bean初始化前阶段    --initializeBean
+    8)Bean初始化阶段    --initializeBean
+    9)Bean初始化后阶段    --initializeBean
+    10)Bean初始化完成阶段    --preInstantiateSingletons
+    11)Bean销毁阶段    --destroyBean
+    12)Bean销毁阶段    --destroyBean
+
+备注：BeanPostProcessor提供spring bean 初始化前和初始化生命周期回调，分别对应postProcessBeforeInitialization 以及postProcessAfterInitialization方法
+
+
+spring 注解总结：
+    1)创建/注入bean类：@Component、@Controller、@Service、@Repository、@Bean、
+                      @Import、@Autowired、@Inject、@Resource、@Qualifier
+    2)配置类：@Configuration、@Bean、@ComponentScan、@Value、@Profile、@PropertySource、@Import、@ImportSource
+    3)aop类：@Aspect、@PointCut、@After、@Before、@Around
+    4)Bean属性相关：@Scope、@Lazy、@Primary、@Order、@DependsOn
+    5)Enable*类：
