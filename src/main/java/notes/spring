@@ -99,11 +99,39 @@ BeanFactory的默认实现为DefaultListableBeanFactory,其中bean的生命周�
 
 备注：BeanPostProcessor提供spring bean 初始化前和初始化生命周期回调，分别对应postProcessBeforeInitialization 以及postProcessAfterInitialization方法
 
-
 spring 注解总结：
     1)创建/注入bean类：@Component、@Controller、@Service、@Repository、@Bean、
                       @Import、@Autowired、@Inject、@Resource、@Qualifier
     2)配置类：@Configuration、@Bean、@ComponentScan、@Value、@Profile、@PropertySource、@Import、@ImportSource
     3)aop类：@Aspect、@PointCut、@After、@Before、@Around
     4)Bean属性相关：@Scope、@Lazy、@Primary、@Order、@DependsOn
-    5)Enable*类：
+    5)Enable*类：异步EnableAsync(@Async)、定时任务EnableScheduling(@Scheduled)、AOP@EnableAspectJAutoProxy、WEB @EnableWebMvc、
+                 JPA @EnableJpaRepositories、事务@EnableTransactionManagement、缓存@EnableCaching/@EnableRedisRepository、
+                 配置@EnableConfigServer、
+    6)spring mvc:类@RestController、方法@GetMapping/@PostMapping.../@RequestMapping(path,params,headers,consumes,produces)、
+                 入参@RequestParam/@RequestBody/@PathVariable/InitBinder/@ModeAttribute、出参@ResponseBody/@ResponseStatus/@ResponseHeaders
+                 异常处理：@ControllerAdvice/@ExceptionHandler
+    7)JPA:@NoRepositoryBean/@Procedure/@Query/@Modifying/@Transactional
+
+注：@RequestMapping 默认映射所有的Http Action**，可以使用@RequestMapping(method=ActionType)来缩小映射范围；
+    @RequestBody 可以将HttpRequest body 中的json数据反序列化成Java类型
+    @ResponseBody 注解的作用是Controller方法的返回对象通过适当的转换器转换为指定的格式后，写会到HttpResponse的body中
+
+    @Component与@Bean的区别：
+       (1):作用对象不同。@Component作用于类，@Bean作用于方法；
+       (2):@Component通常是通过类路径扫描来自动侦测以及自动装配到spring容器中(可以使用@ComponentScan定义要扫描的路径,从中找出标识了需要装配的类)；
+       (3):@Bean比@Component注解的自定义性更强，而且很多地方只能通过@Bean注解来注册Bean。比如当需要引入第三方中的类装配到spring容器中时；
+       (4):@Controller、@Service、@Repository、@Configuration本质都是@Component注解，只是取了个别名而已
+    @Transactional:
+        (1):在@Transactional注解中如果不配置rollbackFor属性，那么事务只会在遇到RuntimeException的时候才会回滚。
+        (2):@Transactional失效的场景：
+            a.@Transactional应用在非public修饰的方法上；（虽然@Transactional使用在非public方法上事务无效，但是不会报错）
+            b.@Transactional注解属性propagation设置错误；设置如下三种失效：
+                --TransactionDefinition.PROPAGATION_SUPPORTS:如果当前存在事务则加入事务，如果不存在事务，则以非事务方式运行；
+                --TransactionDefinition.PROPAGATION_NOT_SUPPORTS:以非事务方式运行，如果当前存在事务则把当前事务挂起；
+                --TransactionDefinition.PROPAGATION_NEVER:以非事务方式运行，如果当前存在事务，则抛出异常
+            c.@Transactional属性rollbackFor设置错误，spring默认抛出了RuntimeException或者Error才会回滚
+            d.同一个类中方法调用，导致@Transactional失效。（只有当事务方法被当前类以外的的代码调用时，才会由spring生成的代理对象来管理）
+            e.异常被捕获了
+            f.数据库引擎不支持事务
+
