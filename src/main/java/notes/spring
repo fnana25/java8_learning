@@ -61,7 +61,7 @@ AOP实现源码解析：
          https://www.bilibili.com/video/BV1Xt411g7eZ?p=1
 
 spring事务：
-    三大接口：PlatformTransactionManager  事务管理器；TransactionDefinition  事务定义信息；TransactionStatus  事务运行状态
+    spring事务的三大接口：PlatformTransactionManager  事务管理器；TransactionDefinition  事务定义信息；TransactionStatus  事务运行状态
     spring并不直接管理事务，而是让相关平台自己实现，运用了模板方法模式，PlatformTransactionManager提供了获取事务、提交事务和回滚事务3个方法
     @EnableTransactionManagement声明在主配置类上，表示开启声明式事务，其原理是通过@Import导入TransactionManagementConfigurationSelector组件，
     然后又通过TransactionManagementConfigurationSelector导入组件AutoProxyRegistrar和ProxyTransactionManagementConfiguration。
@@ -70,7 +70,7 @@ spring事务：
     通过@Transactional作为方法拦截的标记，把有事务管理的类作为目标类，生成代理对象，然后增强@Transactional标记的方法
 spring事务实现方式：
     1)编程式事务，通过java.sql.Connection
-    2)基于TransactionProxyFactoryBean的生命式事务管理
+    2)基于TransactionProxyFactoryBean的声明式事务管理
     3)@Transactional
     4)基于aspectj的aop事务
 
@@ -92,8 +92,7 @@ spring部分源码分析：容器启动，bean生命周期，循环依赖，aop�
 注：构造方法注入不能解决循环依赖的问题，因为实例化需要调用构造方法来完成。
     所以当一个Bean调用构造函数进行实例化后，即使属性还未填充，
     就可以通过三级缓存向外暴露依赖的引用值（所以循环依赖问题的解决也是基于Java的引用传递），这也说明了另外一点，基于构造函数的注入，如果有循环依赖，
-    spring是不能解决的。还要说明一点，spring默认的bean scope是单例的，而三级缓存中都包含singleton，可见是对于单例bean之间的循环依赖，
-    spring是通过三级缓存来解决的。
+    spring是不能解决的。还要说明一点，spring默认的bean scope是单例的，而三级缓存中都包含singleton，可见是对于单例bean之间的循环依赖，spring是通过三级缓存来解决的。
 
 
 
@@ -131,7 +130,7 @@ BeanFactory的默认实现为DefaultListableBeanFactory,其中bean的生命周�
     11)Bean销毁阶段    --destroyBean
     12)Bean销毁阶段    --destroyBean
 
-备注：BeanPostProcessor提供spring bean 初始化前和初始化生命周期回调，分别对应postProcessBeforeInitialization 以及postProcessAfterInitialization方法
+备注：BeanPostProcessor提供spring bean 初始化前和初始化后生命周期回调，分别对应postProcessBeforeInitialization 以及postProcessAfterInitialization方法
 
 spring 注解总结：
     1)创建/注入bean类：@Component、@Controller、@Service、@Repository、@Bean、
@@ -139,8 +138,8 @@ spring 注解总结：
     2)配置类：@Configuration、@Bean、@ComponentScan、@Value、@Profile、@PropertySource、@Import、@ImportSource
     3)aop类：@Aspect、@PointCut、@After、@Before、@Around
     4)Bean属性相关：@Scope、@Lazy、@Primary、@Order、@DependsOn
-    5)Enable*类：异步EnableAsync(@Async)、定时任务EnableScheduling(@Scheduled)、AOP@EnableAspectJAutoProxy、WEB @EnableWebMvc、
-                 JPA @EnableJpaRepositories、事务@EnableTransactionManagement、缓存@EnableCaching/@EnableRedisRepository、
+    5)Enable*类：异步EnableAsync(@Async)、定时任务EnableScheduling(@Scheduled)、AOP@EnableAspectJAutoProxy、WEB@EnableWebMvc、
+                 JPA@EnableJpaRepositories、事务@EnableTransactionManagement、缓存@EnableCaching/@EnableRedisRepository、
                  配置@EnableConfigServer、
     6)spring mvc:类@RestController、方法@GetMapping/@PostMapping.../@RequestMapping(path,params,headers,consumes,produces)、
                  入参@RequestParam/@RequestBody/@PathVariable/InitBinder/@ModeAttribute、出参@ResponseBody/@ResponseStatus/@ResponseHeaders
