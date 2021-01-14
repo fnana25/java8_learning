@@ -73,7 +73,7 @@ public class Java8DateTime {
                 addAll(zoneIds);
             }
         };
-        treeSet.stream().forEach(System.out::println);
+        treeSet.forEach(System.out::println);
 
         System.out.println("-----------------");
 

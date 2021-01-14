@@ -1,9 +1,46 @@
 分布式的优点：
    提提升了开发效率，代码根据业务拆分后更便于维护和扩展，提升系统性能。
 
+分布式事务：
+    强一致性：两阶段提交、三阶段提交
+    最终一致性：
+        1.可靠消息投递模式
+        2.TCC
+        3.补偿模式
+第一种方案：可靠消息最终一致性，需要业务系统结合mq实现，在实现过程中需要保证消息的成功发送和消费，即需要业务系统控制mq的消息状态。
+第二种方案：TCC,分为三个阶段trying-confirming-canceling。每个阶段做不同的处理。
+           trying阶段主要是对业务系统进行检测及资源预留
+           confirming阶段是做业务提交，通过trying阶段执行成功后，再执行该阶段，默认如果trying阶段执行成功，confirming就一定能成功
+           canceling阶段是会对业务做回滚，在trying阶段中，如果存在分支事务trying失败，则需要调用canceling将已预留的资源释放
+第三种方案：最大努力通知型，这种方案方案主要用在与第三方系统通讯时，比如：调用微信或支付宝支付后的结果通知，这种方案也是结合mq进行实现。
+参考：https://www.jianshu.com/p/1156151e20c8
+     http://www.codeceo.com/article/distributed-transaction.html
+     极客时间：https://time.geekbang.org/dailylesson/detail/100044038?utm_source=geektime&utm_medium=chaping&utm_term=pc_interstitial
+
+分布式id生成算法：
+    1.uuid
+    2.自增id（设置不同的起始值，设置步长，这种方法的缺点是当增加数据库机器时，不好调整）
+    3.号段模式。一个独立的服务来产生id，服务每次从数据库获取一段id，缓存到内存中；
+    4.雪花算法（保证每一台机器每一毫秒生成的id不一样）
+
+幂等解决方法：https://time.geekbang.org/dailylesson/detail/100044036?utm_source=geektime&utm_medium=chaping&utm_term=pc_interstitial
+    1.数据库唯一索引
+    2.先select再update
+    3.token机制
+    4.分布式锁（锁的过期时间不小于业务的最大重试时间）
+    5.状态机
+
+seata:
+    TC:全局事务协调者
+    TM:全局事务管理者。每个本地事务向全局管理事务者注册事务id，每个事务属于一个全局事务，当本地事务执行成功时，向事务管理者提交本地事务
+    RM:资源管理器，通过实现DataSource接口huo
+    XID:事务id传递
+rocketmq支持分布式事务
+    首先发送一个事务消息到mq，当本地事务执行成功后，再把事务消息改成可消费的消息，其他事务就能消费该消息，继续执行了
+
 分布式数据库：
    OceanBase是分布式关系数据库，蚂蚁金服国产商业数据库，非开源。
-   分布式数据库的最终目标是要做到透明壳扩展的数据库
+   分布式数据库的最终目标是要做到透明可扩展的数据库
    OceanBase采用Paxos+两阶段提交协议实现分布式事务
 
 OceanBase 架构：

@@ -1,0 +1,6 @@
+BossGroup:处理tcp连接
+WorkGroup:处理请求
+ 基于netty创建rpc服务：
+ Channel、Handler、ChannelHandlerContext、ChannelPipeline的关系：
+ 一个Channel就是一个connection,一个Channel会创建唯一一个ChannelPipeline，一个ChannelPipeline由多个Handler组成（可以理解为责任链模式），
+ ChannelHandlerContext是一个
