@@ -9,7 +9,7 @@ package com.test.jvm.classloader;
 public class Loader7 {
 
     public static void main(String[] args) {
-        //System.out.println(Child7.a);
+//        System.out.println(Child7.a);
         new Child7();
         new Child7();
     }

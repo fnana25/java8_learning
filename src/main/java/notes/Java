@@ -17,3 +17,7 @@
 像局部变量一样不能定义为public,protected,private和static;
 只能访问final修饰的局部变量
 匿名内部类：会隐式地继承一个父类或实现一个接口
+
+
+泛型：https://www.cnblogs.com/coprince/p/8603492.html
+

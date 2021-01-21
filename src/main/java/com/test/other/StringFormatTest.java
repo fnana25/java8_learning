@@ -23,6 +23,12 @@ import java.util.Locale;
  */
 public class StringFormatTest {
     public static void main(String[] args) {
+        dateTimeTest1();
+        System.out.println();
+        System.out.println("///////////////////////");
+        dateTimeTest2();
+        System.out.println();
+        System.out.println("///////////////////////");
         ///////////////////输出为//////////////////////////////
 //        Hi,王力
 //        Hi,王南:王力.王张
@@ -52,7 +58,7 @@ public class StringFormatTest {
     /**
      * 常见日期和时间组合的格式
       */
-    private void dateTimeTest1(){
+    private static void dateTimeTest1(){
         //////////////////////////输出为/////////////////////////////////////
 //        全部日期和时间信息：星期一 九月 10 10:43:36 CST 2012
 //        年-月-日格式：2012-09-10
@@ -79,7 +85,7 @@ public class StringFormatTest {
     /**
      *
      */
-    private void dateTimeTest2(){
+    private static void dateTimeTest2(){
 //        英文月份简称：Sep
 //        本地月份简称：九月
 //        英文月份全称：September

@@ -13,7 +13,7 @@ public class Loader4 {
         //new对象是对类的主动使用，会触发Parent4初始化
         //Parent4 parent4 = new Parent4();
 
-        //[Lcom.test.jvm.classloader.Parent4 是由jvm运行期动态出来的类型，期父类就是Object,
+        //[Lcom.test.jvm.classloader.Parent4 是由jvm运行期动态出来的类型，其父类就是Object,
         //对于数组来说，javadoc经常将构成数组的元素称为component，即数组降低一个维度后的类型
         Parent4[] array1 = new Parent4[3];
         System.out.println(array1.getClass());

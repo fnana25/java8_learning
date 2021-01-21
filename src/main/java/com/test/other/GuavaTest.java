@@ -30,10 +30,10 @@ public class GuavaTest {
          omitEmptyStrings():去掉空的子串
          withKeyValueSeparator():要分割的字符串中key和value间的分隔符,分割后的子串中key和value间的分隔符默认是=
         */
-        //[ a, b, c,d]
+        //[ a, b, c,d] （limit(3):当分割到4个子串时，停止对子串去掉空字符）
         System.out.println(Splitter.on(",").limit(3).trimResults().split(" a,  b,  c,  d"));
-        //[1 2,  3]
-        System.out.println(Splitter.fixedLength(3).split("1 2 3"));
+        //[1 2,  3]按固定长度分割
+        System.out.println(Splitter.fixedLength(2).split("1a dd   2 3"));
         //[1, 2, 3]
         System.out.println(Splitter.on(" ").omitEmptyStrings().splitToList("1  2 3"));
         //[1, 2, 3]

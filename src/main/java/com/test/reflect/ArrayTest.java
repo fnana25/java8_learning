@@ -21,6 +21,7 @@ public class ArrayTest {
         System.out.println("-----------------------");
 
         int[] dims = new int[]{5, 10, 15};
+        //5、10、15的三维数组
         Object array2 = Array.newInstance(Integer.TYPE, dims);
         Object arrayObj = Array.get(array2, 3);
         arrayObj = Array.get(arrayObj, 5);
