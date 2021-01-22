@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Optional;
+
 /**
  * Person
  *
@@ -20,5 +22,11 @@ public class Person {
     private int age;
 
     private String userName;
+
+    private String position;
+
+    public Optional<String> getPosition() {
+        return Optional.ofNullable(position);
+    }
 
 }
