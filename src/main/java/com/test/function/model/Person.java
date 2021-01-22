@@ -1,7 +1,9 @@
 package com.test.function.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Person
@@ -11,10 +13,12 @@ import lombok.Data;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Person {
 
-    private String userName;
-
     private int age;
+
+    private String userName;
 
 }
