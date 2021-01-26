@@ -21,12 +21,12 @@ public class InvokeTest {
     public static void main(String[] args) throws Exception {
         Class<?> clazz = InvokeTest.class;
         Object invokeTest = clazz.newInstance();
-        Method method = clazz.getMethod("add",new Class[]{int.class,int.class});
-        Object result = method.invoke(invokeTest,new Object[]{1,2});
+        Method method = clazz.getMethod("add",int.class,int.class);
+        Object result = method.invoke(invokeTest,1,2);
         System.out.println(result);
 
-        Method method1 = clazz.getMethod("echo",new Class[]{String.class});
-        Object result1 = method1.invoke(invokeTest,new Object[]{"test"});
+        Method method1 = clazz.getMethod("echo",String.class);
+        Object result1 = method1.invoke(invokeTest,"test");
         System.out.println(result1);
     }
 }

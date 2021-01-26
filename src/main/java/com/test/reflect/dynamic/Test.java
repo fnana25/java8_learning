@@ -14,7 +14,7 @@ public class Test {
         RealSubject realSubject = new RealSubject();
 
         DynamicSubject handler = new DynamicSubject(realSubject);
-        ISubject subject = (ISubject) Proxy.newProxyInstance(realSubject.getClass().getClassLoader(),realSubject.getClass().  getInterfaces(),handler);
+        ISubject subject = (ISubject) Proxy.newProxyInstance(realSubject.getClass().getClassLoader(),realSubject.getClass().getInterfaces(),handler);
         subject.request();
     }
 }

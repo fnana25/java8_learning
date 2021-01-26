@@ -33,13 +33,13 @@ public class ConsumerUse {
 //                x -> lisiList.removeIf(y -> y.getAge() < 23)
 //        );
         Stream.of(
-                new Person(21,"zhangsan"),
-                new Person(22,"lisi"),
-                new Person(23,"wangwu"),
-                new Person(24,"wangwu"),
-                new Person(23,"lisi"),
-                new Person(26,"lisi"),
-                new Person(26,"zhangsan")
+                new Person(21,"zhangsan",""),
+                new Person(22,"lisi",""),
+                new Person(23,"wangwu",""),
+                new Person(24,"wangwu",""),
+                new Person(23,"lisi",""),
+                new Person(26,"lisi",""),
+                new Person(26,"zhangsan","")
         ).forEach(consumer2);
 
         System.out.println(lisiList);
