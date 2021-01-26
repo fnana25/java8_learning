@@ -9,4 +9,5 @@ package com.test.reflect.dynamic;
 public interface ISubject {
 
     void request();
+    void request2();
 }

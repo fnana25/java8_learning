@@ -11,4 +11,9 @@ public class RealSubject implements ISubject {
     public void request() {
         System.out.println("realSubject......");
     }
+
+    @Override
+    public void request2() {
+        System.out.println("request2......");
+    }
 }
