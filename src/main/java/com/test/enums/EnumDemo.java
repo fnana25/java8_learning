@@ -1,7 +1,7 @@
 package com.test.enums;
 
 /**
- * 类描述：枚举
+ * 类描述：枚举 https://www.cnblogs.com/jingmoxukong/p/6098351.html
  *
  * 如果枚举不添加任何方法，枚举值默认为从0开始的有序数值。以 Color 枚举类型举例，它的枚举常量依次为 RED：0，GREEN：1，BLUE：2。
  * 枚举的好处：可以将常量组织起来，统一进行管理。

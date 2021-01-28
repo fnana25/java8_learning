@@ -29,7 +29,7 @@ public class Java8DateTime {
 
         System.out.println("----------------");
 
-        LocalDate localDate2 = LocalDate.of(2018,3,24);
+        LocalDate localDate2 = LocalDate.of(2018,3,23);
         MonthDay monthDay1 = MonthDay.of(localDate.getMonth(),localDate.getDayOfMonth());
         MonthDay monthDay2 = MonthDay.of(localDate2.getMonth(),localDate2.getDayOfMonth());
 
