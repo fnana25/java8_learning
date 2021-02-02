@@ -1,4 +1,4 @@
-package com.test.concurrent;
+package com.test.concurrent.seelExample;
 
 /**
  * 类描述：多个窗口同时卖票
@@ -16,5 +16,6 @@ public class SeelMain {
         s1.start();
         s2.start();
         s3.start();
+
     }
 }

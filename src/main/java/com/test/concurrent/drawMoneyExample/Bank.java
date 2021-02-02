@@ -1,4 +1,4 @@
-package com.test.concurrent;
+package com.test.concurrent.drawMoneyExample;
 
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package com.test.concurrent;
+package com.test.concurrent.threadPool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;

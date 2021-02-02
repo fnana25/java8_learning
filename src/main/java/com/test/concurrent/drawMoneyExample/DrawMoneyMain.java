@@ -1,4 +1,4 @@
-package com.test.concurrent;
+package com.test.concurrent.drawMoneyExample;
 
 /**
  * 类描述：两个人AB通过一个账户,A在柜台取钱和B在ATM机取钱

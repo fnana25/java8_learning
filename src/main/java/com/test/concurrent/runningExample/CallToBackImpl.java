@@ -1,4 +1,6 @@
-package com.test.concurrent;
+package com.test.concurrent.runningExample;
+
+import com.test.concurrent.runningExample.Animal;
 
 /**
  * 类描述：

@@ -1,4 +1,4 @@
-package com.test.concurrent;
+package com.test.concurrent.threadPool;
 
 import java.util.Random;
 import java.util.concurrent.ExecutionException;

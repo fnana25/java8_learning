@@ -1,4 +1,6 @@
-package com.test.concurrent;
+package com.test.concurrent.drawMoneyExample;
+
+import com.test.concurrent.drawMoneyExample.Bank;
 
 /**
  * 类描述：

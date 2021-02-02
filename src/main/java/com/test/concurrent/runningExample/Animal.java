@@ -1,4 +1,4 @@
-package com.test.concurrent;
+package com.test.concurrent.runningExample;
 
 /**
  * 类描述：龟兔赛跑2000米
