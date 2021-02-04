@@ -1,7 +1,6 @@
-package com.test.concurrent.threadPool;
+package com.test.concurrent.thread_pool;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import static java.util.concurrent.Executors.*;
@@ -18,16 +17,13 @@ public class TestCachedThreadPool {
     public static void main(String[] args) {
         ExecutorService service = newCachedThreadPool();
         for (int i = 0; i < 5; i++) {
-            service.execute(new Runnable() {
-                @Override
-                public void run() {
+            service.execute(()-> {
                     try {
-                        TimeUnit.MILLISECONDS.sleep(500);
+                        TimeUnit.MILLISECONDS.sleep(600);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     System.out.println(Thread.currentThread().getName()+" - test executor");
-                }
             });
         }
 

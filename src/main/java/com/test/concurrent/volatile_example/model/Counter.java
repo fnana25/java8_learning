@@ -1,4 +1,4 @@
-package com.test.concurrent.concurrent.model;
+package com.test.concurrent.volatile_example.model;
 
 /**
  * 类描述：

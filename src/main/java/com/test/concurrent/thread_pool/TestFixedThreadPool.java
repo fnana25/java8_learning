@@ -1,4 +1,4 @@
-package com.test.concurrent.threadPool;
+package com.test.concurrent.thread_pool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -24,16 +24,13 @@ public class TestFixedThreadPool {
         ExecutorService service = newFixedThreadPool(5);
 
         for (int i = 0; i < 5; i++) {
-            service.execute(new Runnable() {
-                @Override
-                public void run() {
+            service.execute(()-> {
                     try {
                         TimeUnit.MILLISECONDS.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     System.out.println(Thread.currentThread().getName()+" - test executor");
-                }
             });
         }
 
@@ -50,7 +47,6 @@ public class TestFixedThreadPool {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        // service.shutdown();
         System.out.println(service.isTerminated());
         System.out.println(service.isShutdown());
         System.out.println(service);

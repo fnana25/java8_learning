@@ -1,4 +1,4 @@
-package com.test.concurrent.seelExample;
+package com.test.concurrent.seel_example;
 
 /**
  * 类描述：多个窗口同时卖票
@@ -8,18 +8,24 @@ package com.test.concurrent.seelExample;
  */
 public class Station extends Thread {
 
-    public Station(String name) {
+    Station(String name) {
         //给线程名字赋值
         super(name);
     }
 
-    //为了保持票数一致，票数要静态
-    static int tick = 20;
+    /**
+     * 为了保持票数一致，票数要静态
+     */
+    private static int tick = 20;
 
-    //创建一个静态钥匙，是任意的
-    static Object ob = "aa";
+    /**
+     * 创建一个静态钥匙，是任意的
+     */
+    private static Object ob = "aa";
 
-    //重写run，实现买票逻辑
+    /**
+     * 重写run，实现买票逻辑
+     */
     @Override
     public void run() {
         while (tick > 0){

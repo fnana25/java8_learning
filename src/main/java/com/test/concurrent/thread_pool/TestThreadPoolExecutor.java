@@ -1,4 +1,4 @@
-package com.test.concurrent.threadPool;
+package com.test.concurrent.thread_pool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -19,16 +19,13 @@ public class TestThreadPoolExecutor {
         ExecutorService service = new ThreadPoolExecutor(5,5,0, TimeUnit.MILLISECONDS,new LinkedBlockingDeque<Runnable>());
 
         for (int i = 0; i < 16; i++) {
-            service.execute(new Runnable() {
-                @Override
-                public void run() {
+            service.execute(()-> {
                     try {
                         TimeUnit.MILLISECONDS.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     System.out.println(Thread.currentThread().getName() + "- test executor");
-                }
             });
         }
         System.out.println(service);

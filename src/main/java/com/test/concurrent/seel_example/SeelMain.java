@@ -1,4 +1,4 @@
-package com.test.concurrent.seelExample;
+package com.test.concurrent.seel_example;
 
 /**
  * 类描述：多个窗口同时卖票

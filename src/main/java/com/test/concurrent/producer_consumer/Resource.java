@@ -1,4 +1,4 @@
-package com.test.concurrent.producerAndConsumer;
+package com.test.concurrent.producer_consumer;
 
 /**
  * 类描述：资源类
@@ -9,12 +9,14 @@ package com.test.concurrent.producerAndConsumer;
 public class Resource {
 
     private String name;
-    public int count = 1;
+    int count = 1;
     private boolean flag = false;
 
-    //生产资源
-    public synchronized void set(String name){
-        while (flag){
+    /**
+     * 生产资源
+     */
+    public synchronized void set(String name) {
+        while (flag) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -28,9 +30,11 @@ public class Resource {
         this.notifyAll();
     }
 
-    //消费资源
-    public synchronized void out(){
-        while (!flag){
+    /**
+     * 消费资源
+     */
+    public synchronized void out() {
+        while (!flag) {
             try {
                 wait();
             } catch (InterruptedException e) {

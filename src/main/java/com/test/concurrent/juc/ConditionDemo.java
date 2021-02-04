@@ -4,7 +4,10 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 类描述：
+ * 类描述：锁的条件对象
+ * Condition对象与Lock对象是绑定的，Condition对象只能在当前Lock对象上操作。
+ * 和Object类中的 wait 、notify和notifyAll 方法一样，当调用await()方法时，会释放掉当前的锁，被 signal()方法唤醒时会去竞争锁资源。
+ * signal()方法必须在await()方法之后被调用，不然线程不会被唤醒。
  *
  * @author fengna
  * @since 2021/2/3 15:57
@@ -25,7 +28,7 @@ public class ConditionDemo implements Runnable {
             System.out.println(Thread.currentThread().getName() + "线程被唤醒，执行任务结束。");
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             lock.unlock();
         }
     }

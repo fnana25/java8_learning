@@ -14,7 +14,7 @@ public class InterruptedDeadLock implements Runnable {
     private static ReentrantLock lock2 = new ReentrantLock();
     private int num;
 
-    public InterruptedDeadLock(int num) {
+    InterruptedDeadLock(int num) {
         this.num = num;
     }
 

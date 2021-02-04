@@ -14,14 +14,8 @@ import java.util.concurrent.CyclicBarrier;
  */
 public class CyclicBarrierDemo {
 
-    public static void main(String[] args) throws InterruptedException {
-        CyclicBarrier barrier = new CyclicBarrier(5, new Runnable() {
-            @Override
-            public void run() {
-                System.err.println("5个线程执行完成，循环完一遍");
-            }
-        });
-
+    public static void main(String[] args){
+        CyclicBarrier barrier = new CyclicBarrier(5, ()->System.err.println("5个线程执行完成，循环完一遍"));
         Random random = new Random();
         for(int i=0; i<20; i++){
             new Thread(()->{

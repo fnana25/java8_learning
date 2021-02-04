@@ -1,4 +1,4 @@
-package com.test.concurrent.runningExample;
+package com.test.concurrent.running_example;
 
 import java.util.Objects;
 
@@ -8,15 +8,14 @@ import java.util.Objects;
  * @author fengna
  * @since 2021/1/29 14:59
  */
-public class Rabbit extends Animal {
+public class Rabbit extends AbstractAnimal {
 
-    public Rabbit() {
+    Rabbit() {
         setName("兔子");
     }
 
     @Override
     public void running() {
-
         int dis = 5;
         length -= dis;
         System.out.println("兔子跑了" + dis + "米，距离终点还有" + length + "米。");

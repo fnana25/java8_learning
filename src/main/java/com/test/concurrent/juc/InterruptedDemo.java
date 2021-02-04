@@ -22,9 +22,7 @@ public class InterruptedDemo {
         final Lock lock = new ReentrantLock();
         lock.lock();
         Thread.sleep(1000);
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        Thread thread = new Thread(()-> {
                 lock.lock();
 //                try {
 //                    lock.lockInterruptibly();
@@ -32,7 +30,6 @@ public class InterruptedDemo {
 //                    e.printStackTrace();
 //                }
                 System.out.println(Thread.currentThread().getName() + "interrupted");
-            }
         });
         thread.start();
         Thread.sleep(1000);

@@ -1,10 +1,10 @@
-package com.test.concurrent.concurrent;
+package com.test.concurrent.volatile_example;
 
-import com.test.concurrent.concurrent.model.Counter;
+import com.test.concurrent.volatile_example.model.Counter;
 
 /**
  * 类描述：线程并发问题
- *
+ * <p>
  * 在 java 的内存模型中每一个线程运行时都有一个线程栈，线程栈保存了线程运行时候变量值信息。当线程访问某一个对象时候值的时候，
  * 首先通过对象的引用找到对应在堆内存的变量的值，然后把堆内存变量的具体值load到线程本地内存中，建立一个变量副本，
  * 之后线程就不再和对象在堆内存变量值有任何关系，而是直接修改副本变量的值，在修改完之后的某一个时刻（线程退出之前），
@@ -22,12 +22,7 @@ public class VolatileTest {
         final Counter counter = new Counter();
 
         for (int i = 0; i < 1000; i++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    counter.inc();
-                }
-            }).start();
+            new Thread(() -> counter.inc()).start();
         }
         System.out.println(counter);
     }

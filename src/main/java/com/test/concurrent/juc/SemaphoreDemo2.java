@@ -1,4 +1,4 @@
-package com.test.concurrent.semaphoreExample;
+package com.test.concurrent.juc;
 
 import java.util.concurrent.Semaphore;
 
@@ -18,16 +18,14 @@ import java.util.concurrent.Semaphore;
  * @author fengna
  * @since 2021/2/2 15:19
  */
-public class ThreadCommunication {
+public class SemaphoreDemo2 {
 
     private static int num;
 
     private static Semaphore semaphore = new Semaphore(0);
 
     public static void main(String[] args) {
-        Thread threadA = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        Thread threadA = new Thread(()-> {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -35,12 +33,9 @@ public class ThreadCommunication {
                 }
                 num++;
                 semaphore.release(2);
-            }
         });
 
-        Thread threadB = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        Thread threadB = new Thread(()-> {
                 try {
                     //获取 permit，如果 semaphore 没有可用的 permit 则等待，如果有则消耗一个
                     semaphore.acquire();
@@ -48,12 +43,9 @@ public class ThreadCommunication {
                     e.printStackTrace();
                 }
                 System.out.println(Thread.currentThread().getName()+"获取到 num 的值为："+num);
-            }
         });
 
-        Thread threadC = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        Thread threadC = new Thread(()-> {
                 try {
                     //获取 permit，如果 semaphore 没有可用的 permit 则等待，如果有则消耗一个
                     semaphore.acquire();
@@ -61,7 +53,6 @@ public class ThreadCommunication {
                     e.printStackTrace();
                 }
                 System.out.println(Thread.currentThread().getName()+"获取到 num 的值为："+num);
-            }
         });
 
         threadA.start();

@@ -1,4 +1,4 @@
-package com.test.concurrent.runningExample;
+package com.test.concurrent.running_example;
 
 import java.util.Objects;
 
@@ -14,9 +14,9 @@ import java.util.Objects;
  * @author fengna
  * @since 2021/1/29 14:59
  */
-public class Tortoise extends Animal {
+public class Tortoise extends AbstractAnimal {
 
-    public Tortoise() {
+    Tortoise() {
         setName("乌龟");
     }
 

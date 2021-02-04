@@ -1,9 +1,7 @@
-package com.test.concurrent.drawMoneyExample;
-
-import com.test.concurrent.drawMoneyExample.Bank;
+package com.test.concurrent.draw_money_example;
 
 /**
- * 类描述：
+ * 类描述：取钱者
  *
  * @author fengna
  * @since 2021/1/28 17:51
@@ -16,7 +14,7 @@ public class DrawPerson extends Thread {
 
     private double drawMoney;
 
-    public DrawPerson(Bank bank, String mode, double drawMoney){
+    DrawPerson(Bank bank, String mode, double drawMoney){
         this.bank = bank;
         this.mode = mode;
         this.drawMoney = drawMoney;
