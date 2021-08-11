@@ -12,7 +12,6 @@ public class DrawMoneyMain {
         Bank bank = new Bank();
         DrawPerson personA = new DrawPerson(bank, "ATM", 100);
         DrawPerson personB = new DrawPerson(bank, "counter", 200);
-
         personA.start();
         personB.start();
     }

@@ -24,7 +24,9 @@ public class ConditionDemo implements Runnable {
         System.out.println(Thread.currentThread().getName() + "线程进入等待");
         try {
             lock.lock();
+            System.out.println("11111111111411");
             condition.await();
+            System.out.println("11111111511111");
             System.out.println(Thread.currentThread().getName() + "线程被唤醒，执行任务结束。");
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -36,9 +38,13 @@ public class ConditionDemo implements Runnable {
     public static void main(String[] args) throws InterruptedException {
         Thread thread = new Thread(new ConditionDemo());
         thread.start();
+        System.out.println("1111111111111");
         Thread.sleep(2000);
+        System.out.println("11111111111121");
         lock.lock();
+        System.out.println("11111111111131");
         condition.signalAll();
+        System.out.println("11111116111111");
         lock.unlock();
     }
 }

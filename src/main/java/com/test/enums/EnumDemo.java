@@ -29,8 +29,8 @@ public class EnumDemo {
 
     //注：如果枚举中没有定义方法，也可以在最后一个实例后面加逗号、分号或什么都不加。
     //enum的基本方法的使用:
-    enum Color {RED, GREEN, BLUE;}
-    enum Size {BIG, MIDDLE, SMALL;}
+    enum Color {RED, GREEN, BLUE}
+    enum Size {BIG, MIDDLE, SMALL}
     public static void main(String args[]) {
         System.out.println("=========== Print all Color ===========");
         for (Color c : Color.values()) {

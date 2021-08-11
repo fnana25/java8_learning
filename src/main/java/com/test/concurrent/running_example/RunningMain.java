@@ -21,6 +21,7 @@ public class RunningMain {
         animal2.callToBack = callToBack1;
         CallToBackImpl callToBack2 = new CallToBackImpl(animal2);
         animal1.callToBack = callToBack2;
+        System.out.println(2222);
         animal1.start();
         animal2.start();
     }

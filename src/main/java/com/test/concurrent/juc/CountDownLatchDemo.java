@@ -15,7 +15,7 @@ public class CountDownLatchDemo {
 
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch countDownLatch = new CountDownLatch(10);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             new Thread(()->{
                 try {
                     Thread.sleep(new Random().nextInt(10)*100);

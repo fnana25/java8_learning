@@ -21,7 +21,7 @@ public class CyclicBarrierDemo {
             new Thread(()->{
                 System.out.println(Thread.currentThread().getName() + "线程开始执行。。。。");
                 try {
-                    Thread.sleep(random.nextInt(10) * 500);
+                    Thread.sleep(random.nextInt(40) * 500);
                     System.err.println(Thread.currentThread().getName() + "线程开始等待");
                     barrier.await();
                 } catch (InterruptedException e) {
